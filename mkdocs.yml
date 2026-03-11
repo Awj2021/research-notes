@@ -1,0 +1,113 @@
+# ============================================================
+#  MkDocs + Material  —  科研笔记站点配置
+#  部署地址: https://<username>.github.io/research-notes/
+# ============================================================
+
+site_name: 科研笔记        # ← 改成你喜欢的站点名
+site_url: https://<username>.github.io/research-notes/   # ← 替换 <username>
+site_description: 记录科研思考与知识点理解
+site_author: Your Name     # ← 替换为你的名字
+
+repo_name: research-notes
+repo_url: https://github.com/<username>/research-notes   # ← 替换 <username>
+
+# ── 主题 ──────────────────────────────────────────────────────
+theme:
+  name: material
+  language: zh              # 中文界面
+  palette:
+    # 浅色模式
+    - scheme: default
+      primary: indigo
+      accent: teal
+      toggle:
+        icon: material/brightness-7
+        name: 切换到深色模式
+    # 深色模式
+    - scheme: slate
+      primary: indigo
+      accent: teal
+      toggle:
+        icon: material/brightness-4
+        name: 切换到浅色模式
+  font:
+    text: Noto Sans SC       # 中文正文字体
+    code: JetBrains Mono
+  features:
+    - navigation.instant      # 即时加载，类 SPA 体验
+    - navigation.tabs          # 顶部标签页导航
+    - navigation.sections      # 侧边栏分组
+    - navigation.top           # 返回顶部按钮
+    - navigation.indexes       # 分区索引页
+    - search.suggest           # 搜索建议
+    - search.highlight         # 搜索高亮
+    - content.code.copy        # 代码块复制按钮
+    - content.code.annotate    # 代码注释
+    - toc.follow               # 目录自动跟随
+
+# ── 导航结构 ──────────────────────────────────────────────────
+nav:
+  - 首页: index.md
+  - 笔记:
+    - notes/index.md
+    - 示例笔记: notes/example.md
+  - 论文阅读:
+    - papers/index.md
+    - 示例论文笔记: papers/example-paper.md
+  - 博客:
+    - blog/index.md
+
+# ── Markdown 扩展 ─────────────────────────────────────────────
+markdown_extensions:
+  # 数学公式 (LaTeX)
+  - pymdownx.arithmatex:
+      generic: true
+  # 代码高亮
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  # 提示框 (Admonitions)
+  - admonition
+  - pymdownx.details
+  # 标签页
+  - pymdownx.tabbed:
+      alternate_style: true
+  # 任务列表
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  # 脚注、缩写、表格等
+  - footnotes
+  - abbr
+  - tables
+  - attr_list
+  - md_in_html
+  - toc:
+      permalink: true
+
+# ── 额外配置 ──────────────────────────────────────────────────
+extra_javascript:
+  # MathJax —— 渲染 LaTeX 数学公式
+  - javascripts/mathjax.js
+  - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
+
+extra_css: []
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/<username>       # ← 替换 <username>
+
+# ── 插件 ──────────────────────────────────────────────────────
+plugins:
+  - search:
+      lang:
+        - zh
+        - en
+  - tags
